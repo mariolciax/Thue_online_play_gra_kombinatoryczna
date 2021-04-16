@@ -1,5 +1,5 @@
 print("Witaj w grze Abelowy Thue Online")
-k= int(input("Podaj liczbę liter alfabetu: "))
+k = int(input("Podaj liczbę liter alfabetu: "))
 n = int(input("Podaj maksymalną długość ciągu: "))
 A = [ i for i in range(1,k+1)]  #alfabet od 1 do k
 print("To jest twój alfabet :", A)
