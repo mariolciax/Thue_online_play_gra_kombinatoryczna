@@ -14,7 +14,7 @@ if k <= 6:
         l1 = int((k+1)/2)
         l2 = int((k-1)/2)
         P = [i for i in range(1,l1+1)]
-        D = [i+l2  for i in range(1,l2+1)]
+        D = [i+l1  for i in range(1,l2+1)]
         print(P)
         print(D)
 
