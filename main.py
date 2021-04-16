@@ -23,22 +23,17 @@ if k <= 6:
     result.insert(0, ans)
     print(result)
     place = 1
-    for i in range(1, n-1):
- 
+    
+    while len(result)<n:
+
             if ans in P:
                 place = place + 1
-                print("Na miejscu", place)
-                ans = int(input("podaj wybraną literę z alfabetu: "))
-                result.insert(place - 1, ans)
-                print("Aktualny ciąg :", result)
+          
 
-            if ans in D:
-
-                print("Na miejscu", place)
-                ans = int(input("podaj wybraną literę z alfabetu: "))
-
-                result.insert(place-1, ans)
-                print("Aktualny ciąg :", result)
+            print("Na miejscu", place, "podaj wybraną literę z alfabetu:")
+            ans = int(input())
+            result.insert(place-1, ans)
+            print("Aktualny ciąg:", result)
 
 
 print("Wygrałeś!")
