@@ -31,6 +31,11 @@ def main():
     print("Witaj w grze Abelowy Thue Online")
     k = int(input("Podaj liczbę liter alfabetu: "))
     n = int(input("Podaj maksymalną długość ciągu: "))
+    
+    if k <= 0 or n <= 0 :
+    print("Złe wartości liczbowe")
+    exit()
+    
     A = [i for i in range(1, k + 1)]  # alfabet od 1 do k
     print("To jest twój alfabet :", A)
     if k <= 6:
