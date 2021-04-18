@@ -8,15 +8,12 @@ if k <= 6:
         l = int(k/2)  #długość podciągu
         P = [i for i in range(1,l+1)]
         D = [i+l for i in range(1,l+1)]
-        #print(P)
-        #print(D)
+
     else: #tworze podciągi P D - opisane tak jak w dokumentacji, jesli k nieparzyste
         l1 = int((k+1)/2)
         l2 = int((k-1)/2)
         P = [i for i in range(1,l1+1)]
         D = [i+l1  for i in range(1,l2+1)]
-        #print(P)
-        #print(D)
 
     ans = int(input("Podaj wybraną literę z alfabetu: "))
     result = []   #ciąg
@@ -36,7 +33,6 @@ if k <= 6:
         if sprawdz_abel(result, A) == 1:
                 print("Przegrałeś")
                 exit()
-
 
 print("Wygrałeś!")
 
