@@ -33,8 +33,8 @@ def main():
     n = int(input("Podaj maksymalną długość ciągu: "))
     
     if k <= 0 or n <= 0 :
-    print("Złe wartości liczbowe")
-    exit()
+        print("Złe wartości liczbowe")
+        exit()
     
     A = [i for i in range(1, k + 1)]  # alfabet od 1 do k
     print("To jest twój alfabet :", A)
