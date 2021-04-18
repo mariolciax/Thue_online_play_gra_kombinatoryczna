@@ -27,13 +27,6 @@ def sprawdz_abel(slowo, alfabet):  # przeszukiwanie calego slowa pod wzgledem re
                 return 1
     return 0
 
-
-def sprawdz(slowo, alfabet):
-    if sprawdz_abel(slowo, alfabet) == 1:
-        print('słowo ma repetycje abelowa')
-    if sprawdz_abel(slowo, alfabet) == 0:
-        print('slowo nie ma repetycji abelowych')
-
 def main():
     print("Witaj w grze Abelowy Thue Online")
     k = int(input("Podaj liczbę liter alfabetu: "))
