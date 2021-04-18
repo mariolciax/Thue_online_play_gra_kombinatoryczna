@@ -33,6 +33,9 @@ if k <= 6:
         ans = int(input()) 
         result.insert(place-1, ans) # wstawiamy element do ciągu, odejmujemy 1 bo w pytchonie jest indeksowanie od 0
         print("Aktualny ciąg:", result)
+        if sprawdz_abel(result, A) == 1:
+                print("Przegrałeś")
+                exit()
 
 
 print("Wygrałeś!")
