@@ -1,7 +1,3 @@
-
-import math
-
-
 def sprawdz_abelowo(slowo, alfabet):  # sprawdzanie repetycji abelowych juz w konkretnych podslowach
     n = len(slowo)
     p = int(n / 2)
@@ -23,7 +19,7 @@ def sprawdz_abelowo(slowo, alfabet):  # sprawdzanie repetycji abelowych juz w ko
 
 def sprawdz_abel(slowo, alfabet):  # przeszukiwanie calego slowa pod wzgledem repetycji abelowych
     n = len(slowo)
-    m = math.floor(n / 2)
+    m = int(n / 2)
     for k in range(1, m + 1):
         w = n - 1 - 2 * (k - 1)  # liczba podslow dlugosci k do sprawdzenia
         for j in range(0, w):
