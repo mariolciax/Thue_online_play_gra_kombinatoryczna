@@ -59,7 +59,40 @@ def main():
                 print("Przegrałeś")
                 exit()
     else:
-        raise NotImplementedError
+         ans = int(input("Podaj wybraną literę z alfabetu: "))
+        result = [ans]
+        print("Aktualny ciąg: ", result)
+
+        while len(result) < n:
+            count = [0 for i in range(1, len(result) + 2)]
+            for place in range(1,len(result)+2):
+                for element in A:
+                    result2 = list(result)
+                    result2.insert(place - 1, element)
+                    if sprawdz_abel(result2, A) == 1:
+                        count[place-1] += 1
+                    if count[place-1] == k:
+                        print(f"Na miejscu {place} podaj wybraną literę z alfabetu:")
+                        ans = int(input())
+                        result.insert(place - 1, ans)
+                        print("Aktualny ciąg:", result)
+                        if sprawdz_abel(result, A) == 1:
+                            print("Przegrałeś!")
+                            exit()
+            #print(count)
+            max_value = max(count)
+            place = count.index(max_value)
+            print(f"Na miejscu {place+1} podaj wybraną literę z alfabetu:")
+            ans = int(input())
+            result.insert(place, ans)
+            print("Aktualny ciąg:", result)
+            if sprawdz_abel(result, A) == 1:
+                print("Przegrałeś!")
+                exit()
+
+    print("Wygrałeś!")
+
+
 
     print("Wygrałeś!")
 
