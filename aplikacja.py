@@ -27,6 +27,7 @@ def sprawdz_abel(slowo, alfabet):  # przeszukiwanie calego slowa pod wzgledem re
                 return 1
     return 0
 
+
 def main():
     print("Witaj w grze Abelowy Thue Online")
     k = int(input("Podaj liczbę liter alfabetu: "))
@@ -59,19 +60,19 @@ def main():
                 print("Przegrałeś")
                 exit()
     else:
-         ans = int(input("Podaj wybraną literę z alfabetu: "))
+        ans = int(input("Podaj wybraną literę z alfabetu: "))
         result = [ans]
         print("Aktualny ciąg: ", result)
 
         while len(result) < n:
-            count = [0 for i in range(1, len(result) + 2)]
+            count = [0 for i in range(1, len(result) + 2)] # lista do której zapisuje, ile liczb na danym miejscu da nam repetycje
             for place in range(1,len(result)+2):
                 for element in A:
                     result2 = list(result)
-                    result2.insert(place - 1, element)
-                    if sprawdz_abel(result2, A) == 1:
+                    result2.insert(place - 1, element) 
+                    if sprawdz_abel(result2, A) == 1:  # jesli jest repetycja
                         count[place-1] += 1
-                    if count[place-1] == k:
+                    if count[place-1] == k: # jeśli na którymś miejscu będzie liczba równa liczbie liter alfabetu
                         print(f"Na miejscu {place} podaj wybraną literę z alfabetu:")
                         ans = int(input())
                         result.insert(place - 1, ans)
@@ -80,8 +81,8 @@ def main():
                             print("Przegrałeś!")
                             exit()
             #print(count)
-            max_value = max(count)
-            place = count.index(max_value)
+            max_value = max(count) # największa wartość
+            place = count.index(max_value) # pierwszy indeks gdzie mamy największą wartość
             print(f"Na miejscu {place+1} podaj wybraną literę z alfabetu:")
             ans = int(input())
             result.insert(place, ans)
@@ -89,10 +90,6 @@ def main():
             if sprawdz_abel(result, A) == 1:
                 print("Przegrałeś!")
                 exit()
-
-    print("Wygrałeś!")
-
-
 
     print("Wygrałeś!")
 
