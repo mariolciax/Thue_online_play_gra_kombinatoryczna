@@ -77,9 +77,8 @@ def main():
                         ans = int(input())
                         result.insert(place - 1, ans)
                         print("Aktualny ciąg:", result)
-                        if sprawdz_abel(result, A) == 1:
-                            print("Przegrałeś!")
-                            exit()
+                        print("Przegrałeś!")
+                        exit()
             #print(count)
             max_value = max(count) # największa wartość
             place = count.index(max_value) # pierwszy indeks gdzie mamy największą wartość
