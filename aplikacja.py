@@ -44,6 +44,10 @@ def main():
         P = [i for i in range(1, l + 1)]
 
         ans = int(input("Podaj wybraną literę z alfabetu: "))
+        
+        while ans not in A:
+            ans = int(input("Podałeś błędną literę! Podaj wybraną literę z alfabetu: "))
+            
         result = [ans]
         print("Aktualny ciąg: ", result)
         place = 1
@@ -54,6 +58,9 @@ def main():
 
             print(f"Na miejscu {place} podaj wybraną literę z alfabetu:")
             ans = int(input())
+            while ans not in A:
+                print("Podałeś błędną literę! Podaj wybraną literę z alfabetu: ")
+                ans = int(input())
             result.insert(place - 1, ans)
             print("Aktualny ciąg:", result)
             if sprawdz_abel(result, A) == 1:
@@ -61,6 +68,9 @@ def main():
                 exit()
     else:
         ans = int(input("Podaj wybraną literę z alfabetu: "))
+        while ans not in A:
+            print("Podałeś błędną literę! Podaj wybraną literę z alfabetu: ")
+            ans = int(input())
         result = [ans]
         print("Aktualny ciąg: ", result)
 
@@ -75,6 +85,11 @@ def main():
                     if count[place-1] == k: # jeśli na którymś miejscu będzie liczba równa liczbie liter alfabetu
                         print(f"Na miejscu {place} podaj wybraną literę z alfabetu:")
                         ans = int(input())
+                        
+                        while ans not in A:
+                            print("Podałeś błędną literę! Podaj wybraną literę z alfabetu: ")
+                            ans = int(input())
+                            
                         result.insert(place - 1, ans)
                         print("Aktualny ciąg:", result)
                         print("Przegrałeś!")
@@ -84,6 +99,9 @@ def main():
             place = count.index(max_value) # pierwszy indeks gdzie mamy największą wartość
             print(f"Na miejscu {place+1} podaj wybraną literę z alfabetu:")
             ans = int(input())
+            while ans not in A:
+                print("Podałeś błędną literę! Podaj wybraną literę z alfabetu: ")
+                ans = int(input())
             result.insert(place, ans)
             print("Aktualny ciąg:", result)
             if sprawdz_abel(result, A) == 1:
