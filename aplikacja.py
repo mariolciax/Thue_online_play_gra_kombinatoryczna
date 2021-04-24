@@ -39,10 +39,10 @@ def main():
     
     A = [i for i in range(1, k + 1)]  # alfabet od 1 do k
     print("To jest twój alfabet :", A)
+    
     if k <= 6:
         l = int(k / 2) if k % 2 == 0 else int((k + 1) / 2)
         P = [i for i in range(1, l + 1)]
-
         ans = int(input("Podaj wybraną literę z alfabetu: "))
         
         while ans not in A:
@@ -58,9 +58,11 @@ def main():
 
             print(f"Na miejscu {place} podaj wybraną literę z alfabetu:")
             ans = int(input())
+            
             while ans not in A:
                 print("Podałeś błędną literę! Podaj wybraną literę z alfabetu: ")
                 ans = int(input())
+                
             result.insert(place - 1, ans)
             print("Aktualny ciąg:", result)
             if sprawdz_abel(result, A) == 1:
@@ -99,9 +101,11 @@ def main():
             place = count.index(max_value) # pierwszy indeks gdzie mamy największą wartość
             print(f"Na miejscu {place+1} podaj wybraną literę z alfabetu:")
             ans = int(input())
+            
             while ans not in A:
                 print("Podałeś błędną literę! Podaj wybraną literę z alfabetu: ")
                 ans = int(input())
+                
             result.insert(place, ans)
             print("Aktualny ciąg:", result)
             if sprawdz_abel(result, A) == 1:
