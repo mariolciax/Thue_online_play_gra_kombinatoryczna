@@ -51,7 +51,7 @@ def main():
 
     s = int(input("Jaką strategię wybierasz? Wpisz: 1 (losowa) lub  2 (trudna): "))
     if s not in [1, 2]:
-        int(input("Błedny wybór! Jaką strategię wybierasz? Wpisz: 1 (losowa) lub  2 (trudna): "))
+        s = int(input("Błedny wybór! Jaką strategię wybierasz? Wpisz: 1 (losowa) lub  2 (trudna): "))
 
     if s == 2:
         print("Wybrano strategię trudna")
