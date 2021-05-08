@@ -50,7 +50,7 @@ def main():
     print("To jest twój alfabet :", A)
 
     s = int(input("Jaką strategię wybierasz? Wpisz: 1 (losowa) lub  2 (trudna): "))
-    if s not in [1, 2]:
+    while s not in [1, 2]:
         s = int(input("Błedny wybór! Jaką strategię wybierasz? Wpisz: 1 (losowa) lub  2 (trudna): "))
 
     if s == 2:
