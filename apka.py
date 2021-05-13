@@ -1,3 +1,4 @@
+
 import random
 
 def sprawdz_abelowo(slowo, alfabet):  # sprawdzanie repetycji abelowych juz w konkretnych podslowach
@@ -162,7 +163,6 @@ def strategia_2b(A, n, k):
             exit()
 
 def strategia_2(A, n, k):
-    print("Wybrano strategię trudną")
     if k <= 6:
         strategia_2a(A, n, k)
     else:
@@ -192,7 +192,8 @@ def main():
         print('Wybrano strategię losową')
         strategia_1(A, n)
     elif s==2:
-         strategia_2(A,n, k)
+        print("Wybrano strategię trudną")
+        strategia_2(A, n, k)
 
     print("Wygrałeś!")
 if __name__ == '__main__':
