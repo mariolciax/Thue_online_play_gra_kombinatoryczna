@@ -187,13 +187,10 @@ def main():
     if s==1:
         print('Wybrano strategię losową')
         result = strategia_1(A, n)
-        if sprawdz_abel(result, A)[0] == 1:
-            print("Przegrałeś!")
-            print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
-            exit()
     elif s==2:
         print("Wybrano strategię trudną")
         result = strategia_2(A, n, k)
+    if s==1 or s==2:
         if sprawdz_abel(result, A)[0] == 1:
             print("Przegrałeś!")
             print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
