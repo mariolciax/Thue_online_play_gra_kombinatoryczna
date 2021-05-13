@@ -90,7 +90,14 @@ def strategia_1(A, n):
     return result
 
 
-def strategia_2a(A, n, k):
+def strategia_2a(n, k):
+    """
+    Strategia dla k<=6
+    :param int n: dlugosc ciagu
+    :param int k: liczba liter alfabetu
+    :return: ciąg
+    """
+    A = alfabet(k)
     l = int(k / 2) if k % 2 == 0 else int((k + 1) / 2)
     P = [i for i in range(1, l + 1)]
     ans = pobierz_litere(A)
@@ -112,35 +119,51 @@ def strategia_2a(A, n, k):
             return result
     return result
 
-def strategia_2b(A, n, k):
+def najlepsze_miejsce(count):
+    """
+    Znajduje numery indeksów miejsc, w których jest największa ilość możliwości repetycji
+    :param list count: Lista z wartościami określającymi ile liter da repetycje na danym miejscu
+    :return list: lista indeksów
+    """
+    list_ind = []
+    for i in range(0, len(count)):
+        if count[i] == max(count):
+            list_ind.insert(0, i)
+    return list_ind
+
+def list_repetycje(result, k):
+    """
+    Funkcja generuje liste składającą się z wartości mówiących ile liczb na danym miejscu da nam repetycje
+    :param list result: utworzony ciag
+    :param int k: długość alfabetu
+    :return list: lista
+    """
+    A = alfabet(k)
+    count = [0 for i in range(1, len(result) + 2)]  # lista do której zapisuje, ile liczb na danym miejscu da nam repetycje
+    for place in range(1, len(result) + 2):
+        for element in A:
+            result2 = list(result)
+            result2.insert(place - 1, element)
+            if sprawdz_abel(result2, A)[0] == 1:  # jesli jest repetycja
+                count[place - 1] += 1
+            if count[place - 1] == k:  # jeśli na którymś miejscu będzie liczba równa liczbie liter alfabetu
+                return count
+    return count
+
+def strategia_2b(n, k):
+    """
+    Strategia trudna dla k>6
+    :param int n:  dlugosc ciagu
+    :param int k: liczba liter alfabetu
+    :return list: lista
+    """
+    A = alfabet(k)
     ans =pobierz_litere(A)
     result = [ans]
     print("Aktualny ciąg: ", result)
-
     while len(result) < n:
-        count = [0 for i in
-                 range(1, len(result) + 2)]  # lista do której zapisuje, ile liczb na danym miejscu da nam repetycje
-        for place in range(1, len(result) + 2):
-            for element in A:
-                result2 = list(result)
-                result2.insert(place - 1, element)
-                if sprawdz_abel(result2, A)[0] == 1:  # jesli jest repetycja
-                    count[place - 1] += 1
-                if count[place - 1] == k:  # jeśli na którymś miejscu będzie liczba równa liczbie liter alfabetu
-                    wyswietlenie = list(result)
-                    wyswietlenie.insert(place - 1, '_')
-                    print(f"Na miejscu {place}: {wyswietlenie}")
-                    ans = pobierz_litere(A)
-                    result.insert(place - 1, ans)
-                    print("Aktualny ciąg:", result)
-                    return result
-
-        list_ind = []
-        for i in range(0, len(count)):
-            if count[i] == max(count):
-                list_ind.insert(0, i)
-        place = random.choice(list_ind)
-
+        count = list_repetycje(result, A, k)
+        place = random.choice( najlepsze_miejsce(count))
         wyswietlenie = list(result)
         wyswietlenie.insert(place, '_')
         print(f"Na miejscu {place + 1}: {wyswietlenie} ")
@@ -151,18 +174,17 @@ def strategia_2b(A, n, k):
             return result
     return result
 
-def strategia_2(A, n, k):
+def strategia_2(n, k):
     """
     Wybiera odpowiedni wariant strategii 2
-    :param list A: alfabet
     :param int n: dlugosc ciagu
     :param int k: długosc alfabetu
     :return list: ciag
     """
     if k <= 6:
-        result = strategia_2a(A, n, k)
+        result = strategia_2a(n, k)
     else:
-        result = strategia_2b(A, n, k)
+        result = strategia_2b(n, k)
     return result
 
 def pobierz_wartosci():
@@ -184,13 +206,13 @@ def main():
     A = alfabet(k)
     print("To jest twój alfabet :", A)
     s = wybierz_strategie()
-    if s==1:
+    if s == 1:
         print('Wybrano strategię losową')
         result = strategia_1(A, n)
-    elif s==2:
+    elif s == 2:
         print("Wybrano strategię trudną")
-        result = strategia_2(A, n, k)
-    if s==1 or s==2:
+        result = strategia_2(n, k)
+    if s == 1 or s == 2:
         if sprawdz_abel(result, A)[0] == 1:
             print("Przegrałeś!")
             print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
