@@ -72,7 +72,7 @@ def strategia_1(A, n):
     """
     :param list A: alfabet
     :param int n: maksymalna długość ciągu
-    :return: none
+    :return: list
     """
     ans = pobierz_litere(A)
     result = [ans]
