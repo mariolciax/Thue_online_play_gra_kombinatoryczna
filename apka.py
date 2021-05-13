@@ -148,13 +148,8 @@ def strategia_2b(A, n, k):
 
         wyswietlenie = list(result)
         wyswietlenie.insert(place, '_')
-        print(f"Na miejscu {place + 1}: {wyswietlenie} podaj wybraną literę z alfabetu:")
-        ans = int(input())
-
-        while ans not in A:
-            print("Podałeś błędną literę! Podaj wybraną literę z alfabetu: ")
-            ans = int(input())
-
+        print(f"Na miejscu {place + 1}: {wyswietlenie} ")
+        ans = pobierz_litere(A)
         result.insert(place, ans)
         print("Aktualny ciąg:", result)
         if sprawdz_abel(result, A)[0] == 1:
