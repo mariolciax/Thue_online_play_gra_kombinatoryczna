@@ -77,7 +77,6 @@ def strategia_1(A, n):
     ans = pobierz_litere(A)
     result = [ans]
     print("Aktualny ciąg: ", result)
-
     while len(result) < n:
         place = random.randint(1, len(result) + 1)
         wyswietlenie = list(result)
@@ -87,9 +86,8 @@ def strategia_1(A, n):
         result.insert(place - 1, ans)
         print("Aktualny ciąg:", result)
         if sprawdz_abel(result, A)[0] == 1:
-            print("Przegrałeś!")
-            print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
-            exit()
+            return result
+    return result
 
 
 def strategia_2a(A, n, k):
@@ -111,9 +109,8 @@ def strategia_2a(A, n, k):
         result.insert(place - 1, ans)
         print("Aktualny ciąg:", result)
         if sprawdz_abel(result, A)[0] == 1:
-            print("Przegrałeś!")
-            print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
-            exit()
+            return result
+    return result
 
 def strategia_2b(A, n, k):
     ans =pobierz_litere(A)
@@ -136,9 +133,7 @@ def strategia_2b(A, n, k):
                     ans = pobierz_litere(A)
                     result.insert(place - 1, ans)
                     print("Aktualny ciąg:", result)
-                    print("Przegrałeś!")
-                    print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
-                    exit()
+                    return result
 
         list_ind = []
         for i in range(0, len(count)):
@@ -153,16 +148,22 @@ def strategia_2b(A, n, k):
         result.insert(place, ans)
         print("Aktualny ciąg:", result)
         if sprawdz_abel(result, A)[0] == 1:
-            print("Przegrałeś!")
-            print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
-            exit()
+            return result
+    return result
 
 def strategia_2(A, n, k):
+    """
+    Wybiera odpowiedni wariant strategii 2
+    :param list A: alfabet
+    :param int n: dlugosc ciagu
+    :param int k: długosc alfabetu
+    :return list: ciag
+    """
     if k <= 6:
-        strategia_2a(A, n, k)
+        result = strategia_2a(A, n, k)
     else:
-        strategia_2b(A, n, k)
-
+        result = strategia_2b(A, n, k)
+    return result
 
 def pobierz_wartosci():
     """
@@ -185,11 +186,18 @@ def main():
     s = wybierz_strategie()
     if s==1:
         print('Wybrano strategię losową')
-        strategia_1(A, n)
+        result = strategia_1(A, n)
+        if sprawdz_abel(result, A)[0] == 1:
+            print("Przegrałeś!")
+            print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
+            exit()
     elif s==2:
         print("Wybrano strategię trudną")
-        strategia_2(A, n, k)
-
+        result = strategia_2(A, n, k)
+        if sprawdz_abel(result, A)[0] == 1:
+            print("Przegrałeś!")
+            print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
+            exit()
     print("Wygrałeś!")
 if __name__ == '__main__':
     main()
