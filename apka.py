@@ -162,7 +162,7 @@ def strategia_2b(n, k):
     result = [ans]
     print("Aktualny ciąg: ", result)
     while len(result) < n:
-        count = list_repetycje(result, A, k)
+        count = list_repetycje(result, k)
         place = random.choice( najlepsze_miejsce(count))
         wyswietlenie = list(result)
         wyswietlenie.insert(place, '_')
