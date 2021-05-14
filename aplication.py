@@ -1,11 +1,12 @@
 import random
 
+
 def sprawdz_abelowo(slowo, alfabet):
     """
     Sprawdzanie repetycji abelowych juz w konkretnych podslowach.
-    :param slowo:
-    :param alfabet:
-    :return:
+    :param list slowo: slowo do sprawdzenia pod wzgledem repetycji abelowych
+    :param list alfabet: alfabet
+    :return: liczba (0- brak repetycji abelowych, 1- slowo ma repetycje abelowa)
     """
     n = len(slowo)
     p = n // 2
@@ -28,9 +29,9 @@ def sprawdz_abelowo(slowo, alfabet):
 def sprawdz_abel(slowo, alfabet):
     """
     Przeszukiwanie calego slowa pod wzgledem repetycji abelowych.
-    :param slowo:
-    :param alfabet:
-    :return:
+    :param slowo: slowo do sprawdzenia
+    :param alfabet: alfabet
+    :return: lista zawierajaca na pierwszej pozycji numer (0-brak repetycji, 1-wystepuje repetycja), a na drugiej wartość (0 lub slowo z zaznaczona repetycja)
     """
     n = len(slowo)
     m = n // 2
@@ -47,6 +48,7 @@ def sprawdz_abel(slowo, alfabet):
                     s += str(c)
                 return [1, s]
     return [0, 0]
+
 
 def alfabet(k):
     """
@@ -67,6 +69,7 @@ def wybierz_strategie():
         s = int(input("Błedny wybór! Jaką strategię wybierasz? Wpisz: 1 (losowa) lub  2 (trudna): "))
     return s
 
+
 def pobierz_litere(A):
     """
     Funkcja pobiera litere od użytkownika
@@ -77,6 +80,7 @@ def pobierz_litere(A):
     while litera not in A:
         litera = int(input("Podałeś/Podałaś błędną literę! Podaj wybraną literę z alfabetu: "))
     return litera
+
 
 def strategia_1(A, n):
     """
@@ -129,6 +133,7 @@ def strategia_2a(A, n):
             return
     wygrana()
 
+
 def najlepsze_miejsce(count):
     """
     Znajduje numery indeksów miejsc, w których jest największa ilość możliwości repetycji
@@ -141,6 +146,7 @@ def najlepsze_miejsce(count):
             list_ind.insert(0, i)
     return list_ind
 
+
 def list_repetycje(result, k):
     """
     Funkcja generuje liste składającą się z wartości mówiących ile liczb na danym miejscu da nam repetycje
@@ -149,7 +155,8 @@ def list_repetycje(result, k):
     :return list: lista
     """
     A = alfabet(k)
-    count = [0 for _ in range(1, len(result) + 2)]  # lista do której zapisuje, ile liczb na danym miejscu da nam repetycje
+    count = [0 for _ in
+             range(1, len(result) + 2)]  # lista do której zapisuje, ile liczb na danym miejscu da nam repetycje
     for place in range(1, len(result) + 2):
         for element in A:
             result2 = list(result)
@@ -159,6 +166,7 @@ def list_repetycje(result, k):
             if count[place - 1] == k:  # jeśli na którymś miejscu będzie liczba równa liczbie liter alfabetu
                 return count
     return count
+
 
 def strategia_2b(A, n):
     """
@@ -172,7 +180,7 @@ def strategia_2b(A, n):
     print("Aktualny ciąg: ", result)
     while len(result) < n:
         count = list_repetycje(result, len(A))
-        place = random.choice( najlepsze_miejsce(count))
+        place = random.choice(najlepsze_miejsce(count))
         result.insert(place, '_')
         print(f"Na miejscu {place + 1}: {result} ")
         litera = pobierz_litere(A)
@@ -182,6 +190,7 @@ def strategia_2b(A, n):
             przegrana(result, A)
             return
     wygrana()
+
 
 def strategia_2(A, n):
     """
@@ -195,6 +204,7 @@ def strategia_2(A, n):
     else:
         strategia_2b(A, n)
 
+
 def przegrana(result, A):
     print("Przegrałeś/Przegrałaś!")
     print(f'Repetycja to: {sprawdz_abel(result, A)[1]}')
@@ -202,6 +212,7 @@ def przegrana(result, A):
 
 def wygrana():
     print("Wygrałeś/Wygrałaś!")
+
 
 def pobierz_wartosci():
     """
@@ -215,6 +226,7 @@ def pobierz_wartosci():
         k = int(input("Podaj liczbę liter alfabetu: "))
         n = int(input("Podaj maksymalną długość ciągu: "))
     return k, n
+
 
 def main():
     print("Witaj w grze Abelowy Thue Online")
@@ -232,3 +244,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
