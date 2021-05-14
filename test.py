@@ -5,7 +5,22 @@ pip install pytest pytest-mock
 import pytest
 from aplication import *
 
+def test_sprawdz_abelowo():
+    slowo=[1, 2, 1, 3, 1, 2]
+    alfabet=[1, 2, 3]
+    assert sprawdz_abelowo(slowo, alfabet) == 0
+    slowo=[1, 2, 3, 2, 1, 3]
+    alfabet=[1, 2, 3, 4]
+    assert sprawdz_abelowo(slowo, alfabet) == 1
 
+def test_sprawdz_abel():
+    slowo=[1, 2, 1, 3, 1, 4, 2, 3]
+    alfabet=[1, 2, 3, 4]
+    assert sprawdz_abel(slowo, alfabet) == [0, 0]
+    slowo=[1, 2, 1, 3, 1, 2, 3, 4]
+    alfabet=[1, 2, 3, 4]
+    assert sprawdz_abel(slowo, alfabet) == [1, '1<213-123>4']
+    
 def test_alfabet():
     A = alfabet(10)
     assert A == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
