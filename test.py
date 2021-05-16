@@ -57,3 +57,29 @@ def test_strategia2b_przegrana(mocker, capsys):
     strategia_2b([1, 2, 3], 4)
     captured = capsys.readouterr()
     assert "Przegrałeś" in captured.out
+    
+    
+ def test_wybierz_strategie(mocker):
+    mocker.patch('builtins.input', side_effect=['0'])
+    with pytest.raises(StopIteration):
+    wybierz_strategie()
+
+    mocker.patch('builtins.input', side_effect=['a'])
+    with pytest.raises(StopIteration):
+    wybierz_strategie()
+
+    mocker.patch('builtins.input', side_effect=['2'])
+    with pytest.raises(StopIteration):
+    wybierz_strategie()
+
+def test_najlepsze_miejsce():
+    A=najlepsze_miejsce([2,2,4,3,4,1])
+    assert A==[3,5]
+    A = najlepsze_miejsce([2, 5, 4, 3, 4, 1])
+    assert A == [2]
+
+def test_list_repetycje():
+    A=list_repetycje([1,2,1],4)
+    assert A==[2,2,2,2]
+    A=list_repetycje([2,1,2,3,1,2],4)
+    assert A==[3,3,3,3,2,3,2]
