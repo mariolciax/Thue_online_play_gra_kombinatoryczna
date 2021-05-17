@@ -20,12 +20,23 @@ def test_sprawdz_abel():
     slowo=[1, 2, 1, 3, 1, 2, 3, 4]
     alfabet=[1, 2, 3, 4]
     assert sprawdz_abel(slowo, alfabet) == [1, '1<213-123>4']
-    
+
+
+def test_sprawdz_abelowo():
+    assert sprawdz_abelowo([1, 2, 1, 3, 1, 2], [1, 2, 3]) == 0
+    assert sprawdz_abelowo([1, 2, 3, 2, 1, 3], [1, 2, 3, 4]) == 1
+
+
+def test_sprawdz_abel():
+    assert sprawdz_abel([1, 2, 1, 3, 1, 4, 2, 3], [1, 2, 3, 4]) == [0, 0]
+    assert sprawdz_abel([1, 2, 1, 3, 1, 2, 3, 4], [1, 2, 3, 4]) == [1, '1<213-123>4']
+
+
 def test_alfabet():
-    A = alfabet(10)
-    assert A == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    A = alfabet(1)
-    assert A == [1]
+    a = alfabet(10)
+    assert a == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    a = alfabet(1)
+    assert a == [1]
 
 
 def test_pobierz_wartosci(mocker):
@@ -40,11 +51,67 @@ def test_pobierz_wartosci(mocker):
     with pytest.raises(StopIteration):
         pobierz_wartosci()
 
+# testy potwierdzajace, że nie da się wygrać z trzyliterowym alfabetem i słowem długości 8
+# dla każdej strategii wybrano losowo 100 takich słów
+
+def test_strategia1_8_3(mocker, capsys):
+    j = 0
+    while j < 100:
+        lista = [0 * i for i in range(0, 8)]
+        i = 0
+        while i < 8:
+            lista[i] = str(random.randint(1, 3))
+            i = i + 1
+        mocker.patch('builtins.input', side_effect=lista)
+        strategia_1([1, 2, 3], 8)
+        captured = capsys.readouterr()
+        assert "Przegrałeś" in captured.out
+        j = j + 1
+
+
+def test_strategia2a_8_3(mocker, capsys):
+    j = 0
+    while j < 100:
+        lista = [0 * i for i in range(0, 8)]
+        i = 0
+        while i < 8:
+            lista[i] = str(random.randint(1, 3))
+            i = i + 1
+        mocker.patch('builtins.input', side_effect=lista)
+        strategia_2a([1, 2, 3], 8)
+        captured = capsys.readouterr()
+        assert "Przegrałeś" in captured.out
+        j = j + 1
+
+
+def test_strategia2b_8_3(mocker, capsys):
+    j = 0
+    while j < 100:
+        lista = [0 * i for i in range(0, 8)]
+        i = 0
+        while i < 8:
+            lista[i] = str(random.randint(1, 3))
+            i = i + 1
+        mocker.patch('builtins.input', side_effect=lista)
+        strategia_2b([1, 2, 3], 8)
+        captured = capsys.readouterr()
+        assert "Przegrałeś" in captured.out
+        j = j + 1
+
+
 def test_strategia1_przegrana(mocker, capsys):
     mocker.patch('builtins.input', side_effect=['1', '1'])
     strategia_1([1, 2, 3], 4)
     captured = capsys.readouterr()
     assert "Przegrałeś" in captured.out
+
+
+def test_strategia1_wygrana(mocker, capsys):
+    mocker.patch('builtins.input', side_effect=['1', '2', '3'])
+    strategia_1([1, 2, 3], 3)
+    captured = capsys.readouterr()
+    assert "Wygrałeś" in captured.out
+
 
 def test_strategia2a_przegrana(mocker, capsys):
     mocker.patch('builtins.input', side_effect=['1', '1'])
@@ -52,34 +119,57 @@ def test_strategia2a_przegrana(mocker, capsys):
     captured = capsys.readouterr()
     assert "Przegrałeś" in captured.out
 
+
+def test_strategia2a_wygrana(mocker, capsys):
+    mocker.patch('builtins.input', side_effect=['1', '2', '3'])
+    strategia_1([1, 2, 3], 3)
+    captured = capsys.readouterr()
+    assert "Wygrałeś" in captured.out
+
+
 def test_strategia2b_przegrana(mocker, capsys):
     mocker.patch('builtins.input', side_effect=['1', '1'])
     strategia_2b([1, 2, 3], 4)
     captured = capsys.readouterr()
     assert "Przegrałeś" in captured.out
-    
-    
- def test_wybierz_strategie(mocker):
+
+
+def test_strategia2b_wygrana(mocker, capsys):
+    mocker.patch('builtins.input', side_effect=['1', '2', '3'])
+    strategia_1([1, 2, 3], 3)
+    captured = capsys.readouterr()
+    assert "Wygrałeś" in captured.out
+
+
+def test_wybierz_strategie(mocker):
     mocker.patch('builtins.input', side_effect=['0'])
     with pytest.raises(StopIteration):
-    wybierz_strategie()
+        wybierz_strategie()
 
-    mocker.patch('builtins.input', side_effect=['a'])
+    mocker.patch('builtins.input', side_effect=['-1'])
     with pytest.raises(StopIteration):
-    wybierz_strategie()
+        wybierz_strategie()
 
-    mocker.patch('builtins.input', side_effect=['2'])
-    with pytest.raises(StopIteration):
-    wybierz_strategie()
 
 def test_najlepsze_miejsce():
-    A=najlepsze_miejsce([2,2,4,3,4,1])
-    assert A==[3,5]
-    A = najlepsze_miejsce([2, 5, 4, 3, 4, 1])
-    assert A == [2]
+    a = najlepsze_miejsce([2, 2, 4, 3, 4, 1])
+    assert a == [4, 2]
+    a = najlepsze_miejsce([2, 5, 4, 3, 4, 1])
+    assert a == [1]
+
 
 def test_list_repetycje():
-    A=list_repetycje([1,2,1],4)
-    assert A==[2,2,2,2]
-    A=list_repetycje([2,1,2,3,1,2],4)
-    assert A==[3,3,3,3,2,3,2]
+    a = list_repetycje([1, 2, 1], 4)
+    assert a == [2, 2, 2, 2]
+    a = list_repetycje([2, 1, 2, 3, 1, 2], 4)
+    assert a == [3, 3, 3, 3, 2, 3, 2]
+
+def test_wygrana(capsys):
+    wygrana()
+    captured = capsys.readouterr()
+    assert "Wygrałeś" in captured.out
+
+def test_przegrana( capsys):
+    przegrana([1, 1, 2], [1, 2, 3])
+    captured = capsys.readouterr()
+    assert "Przegrałeś" in captured.out
