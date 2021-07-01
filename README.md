@@ -1,5 +1,3 @@
-Thue_online_play
-
 # Gra Thue online - gra kombinatoryczna
 Projekt polegał na stworzeniu gry konsolowej.
 Stworzono trzy strategie w grze:
