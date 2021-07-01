@@ -7,9 +7,9 @@ Stworzono trzy strategie w grze:
 * trudna (wariant 1) do 6 liter,
 * trudna (wariant 2) powyżej 6 liter alfabetu.
 
-## LOSOWA
+# LOSOWA
 Komputer losowo wybiera miejsce, w które gracz będzie wpisywał literę.
 
-## TRUDNA (wariant 1) do 6 liter
+# TRUDNA (wariant 1) do 6 liter
 
-## TRUDNA (wariant 2) powyżej 6 liter alfabetu
+# TRUDNA (wariant 2) powyżej 6 liter alfabetu
